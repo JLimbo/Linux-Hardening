@@ -15,7 +15,7 @@ echo checking updates
 sudo apt-get update
 sudo apt-get upgrade -y
 
-#channging to root of disk
+#changing to root of disk
 echo changing to /
 sleep .5
 cd /
