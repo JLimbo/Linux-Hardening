@@ -2,7 +2,8 @@
 
 #Written by John Limb - 19/7/2019.
 #Aim is to install relivent applications and packages.. And perform configuration. We might never get that far but we will see.
-#setting variable to auto exit on error
+#setting variables
+lightdm=/usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
 set -eo pipefail
 #Checking if you are root.. if not then you will get error
 echo Checking that you are root...
@@ -60,7 +61,7 @@ unzip
     oddjob
     oddjob-mkhomedir
     packagekit
-    ntpdate      
+    ntpdate     
 EOF
 )
 #set hostname
@@ -90,6 +91,12 @@ echo discovering $DOMAIN
 sleep .5
 sudo realm discover $DOMAIN
 
+#setting date and time sources.
+echo setting Date and Time sources. please wait.
+sleep .5
+sudo ntpdate -q $DOMAIN
+sudo ntpdate $DOMAIN
+
 #Join the domain
 echo joining domain
 sudo realm join -U $username $DOMAIN
@@ -115,6 +122,10 @@ sudo pam-auth-update
 
 #restart stuff
 systemctl restart sssd
+
+#edit lightdm
+echo "greeter-show-manual-login=true" >> $lightdm
+echo "greeter-hide-users=true" >> $lightdm
 
 #cleaning up
 echo cleaning up!

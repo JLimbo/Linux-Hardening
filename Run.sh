@@ -15,7 +15,7 @@ sleep .5
 if [[ $(id -u) -ne 0 ]] ; then echo -e "${red}UH OH! you are not root! Please run me as root!"${reset} ; exit 1 ; fi
 
 PS3='Choose your option: '
-options=("Join-domain" "Install apps" "Harden Workstation" "Quit")
+options=("Join-domain" "Install apps" "Harden Workstation" "Add user to Sudoers" "Quit")
 select opt in "${options[@]}"; do
     case $opt in
     "Join-domain")
@@ -31,6 +31,9 @@ select opt in "${options[@]}"; do
     "Harden Workstation")
         echo "Calling Script to harden Workstation."
         # optionally call a function or run some code here
+        ;;
+    "Add user to Sudoers")
+        echo "calling file to add user to sudoers"
         ;;
     "Quit")
         echo "Exiting, byee!"

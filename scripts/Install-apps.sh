@@ -15,10 +15,24 @@ echo checking updates
 sudo apt-get update
 sudo apt-get upgrade -y
 
-#changing to root of disk
-echo changing to /
+#making temp dir
+echo making temp folder, when prompted enter folder name
+echo "Enter directory name E.G Temp"
+read dirname
+
+if [ ! -d "$dirname" ]; then
+    echo "File doesn't exist. Creating now"
+    cd /
+    mkdir $dirname
+    echo "File created"
+else
+    echo "File exists"
+fi
+
+#changing to new directory 
+echo changing to /$dirname
 sleep .5
-cd /
+cd /$dirname
 
 #Fetching Chrome
 echo fetching chrome!
@@ -38,3 +52,13 @@ sudo dpkg -i ./zoom_amd64.deb
 echo installing ye old slack
 sleep .5
 sudo snap install slack --classic
+
+#cleanup after
+echo cleaning up!
+sleep 2
+rm -rf /$dirname
+
+echo Complete! please reboot this machine and login as the user.
+echo hit CTRL+C to end
+echo -e "\n"
+sleep 20
