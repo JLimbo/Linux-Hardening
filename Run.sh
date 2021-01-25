@@ -30,7 +30,8 @@ select opt in "${options[@]}"; do
         ;;
     "Harden Workstation")
         echo "Calling Script to harden Workstation."
-        # optionally call a function or run some code here
+        ./scripts/Harden-Workstation.sh
+        ./
         ;;
     "Add user to Sudoers")
         echo "calling file to add user to sudoers"

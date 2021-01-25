@@ -15,50 +15,6 @@ if [[ $(id -u) -ne 0 ]]; then
     echo -e "${red}UH OH! you are not root! Please run me as root!"${reset}
     exit 1
 fi
-##
-echo "######## 1.1 - Configure IP table rules - ########"
-sleep.5
-#Start by IP Tables - Going on the rule no inbound bar SSH and ping
-#Install ip tables
-apt-get install iptables
-#Flushing current ruleset
-iptables -F
-#Ensuring Default drop
-iptables -P INPUT DROP
-iptables -P OUTPUT DROP
-iptables -P FORWARD DROP
-#Ensure loopback policy is configured
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A OUTPUT -o lo -j ACCEPT
-iptables -A INPUT -s 127.0.0.0/8 -j DROP
-#Ensure outbound/established/related connections are good to go
-iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
-iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT
-iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT
-# Open inbound ssh(tcp port 22) connections and ping
-iptables -A INPUT -p tcp --dport 22 -m state --state NEW -j ACCEPT
-iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
-iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
-# Save v4 Firewall rules
-iptables-save >/etc/iptables/rules.v4
-# Run the same for IPV6
-# Flush IPtables rules
-ip6tables -F
-# Ensure default deny firewall policy
-ip6tables -P INPUT DROP
-ip6tables -P OUTPUT DROP
-ip6tables -P FORWARD DROP
-
-ip6tables -A INPUT -i lo -j ACCEPT
-ip6tables -A OUTPUT -o lo -j ACCEPT
-ip6tables -A INPUT -s ::1 -j DROP
-#Save
-ip6tables-save >/etc/iptables/rules.v6
-echo "######## 1.1 - Configure IP table rules Complete - ########"
-sleep.5
 # Next up we configure Journald
 echo "######## 1.2 - Configure Journald - ########"
 sleep.5
@@ -70,4 +26,26 @@ sed -i -r 's/#Storage=auto/Storage=persistent/g' /etc/systemd/journald.conf
 
 echo "######## 1.2 - Configure Journald Complete- ########"
 sleep.5
+#Log file permissions
+echo "############## 1.3 Fix permissions on logfiles ##############"
+find /var/log -type f -exec chmod g-wx,o-rwx {} +
 
+#Create message of the day
+# Update login banners
+
+echo "printf \"\n"\" | sudo tee -a /etc/update-motd.d/00-header
+echo "printf \"AUTHORIZED ACCESS ONLY - Unauthorized access is strictly forbidden.\n"\" | sudo tee -a /etc/update-motd.d/00-header
+echo "printf \"\\-----------------------------------------\n"\" | sudo tee -a /etc/update-motd.d/00-header
+echo "printf \"Your session has been logged\n"\" | sudo tee -a /etc/update-motd.d/00-header
+echo "printf \"\n"\" | sudo tee -a /etc/update-motd.d/00-header
+
+sudo touch /etc/motd
+sudo chmod 644 /etc/motd
+
+sudo mv /etc/update-motd.d/10-help-text /var/tmp/
+
+echo "All connections are monitored and recorded" | sudo tee /etc/issue.net
+echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/issue.net
+
+echo "All connections are monitored and recorded" | sudo tee /etc/issue
+echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/issue
