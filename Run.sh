@@ -31,7 +31,11 @@ select opt in "${options[@]}"; do
     "Harden Workstation")
         echo "Calling Script to harden Workstation."
         ./scripts/Harden-Workstation.sh
-        ./
+        ./scripts/Filesystem_config.sh
+        ./scripts/Enable-ASLR.sh
+        ./scripts/Device-Firewall.sh
+        ./scripts/Network_params.sh
+        ./scritps/ssh_params.sh
         ;;
     "Add user to Sudoers")
         echo "calling file to add user to sudoers"
