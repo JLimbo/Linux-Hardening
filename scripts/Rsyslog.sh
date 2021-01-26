@@ -1,4 +1,5 @@
 #Written by John Limb 1/21
+#Rational: A good deal of info is passed through Rsyslog - setting audit levels so that we keep that
 #Set colour variables
 red=$(tput setaf 1)
 green=$(tput setaf 2)

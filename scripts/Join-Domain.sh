@@ -49,7 +49,8 @@ echo sleeping
 sleep .5
 #Time for apps
 echo Time to install some applications
-while read -r p; do sudo apt-get install -y $p; done < <(cat <<"EOF"
+while read -r p; do sudo apt-get install -y $p; done < <(
+    cat <<"EOF"
 unzip
     realmd
     libnss-sss
@@ -65,7 +66,7 @@ unzip
 EOF
 )
 #set hostname
-echo Enter machine hostname UK04-Lxxxyyy123
+echo "Enter machine hostname example:UK04-Lxxxyyy123"
 read hostname
 echo -e $hostnmame is now hostname - setting
 sleep .10
@@ -124,8 +125,8 @@ sudo pam-auth-update
 systemctl restart sssd
 
 #edit lightdm
-echo "greeter-show-manual-login=true" >> $lightdm
-echo "greeter-hide-users=true" >> $lightdm
+echo "greeter-show-manual-login=true" >>$lightdm
+echo "greeter-hide-users=true" >>$lightdm
 
 #cleaning up
 echo cleaning up!
