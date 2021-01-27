@@ -47,10 +47,6 @@ echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/
 echo "All connections are monitored and recorded" | sudo tee /etc/issue
 echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/issue
 
-echo "######Create Sudo Logfile and pty######"
-echo "Defaults logfile="/var/log/sudo.log"">>/etc/sudoers
-echo "Defaults use_pty">>/etc/sudoers
-
 echo "######Setting Root password######"
 echo enter root password
 read password
