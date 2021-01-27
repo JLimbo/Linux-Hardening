@@ -32,14 +32,19 @@ select opt in "${options[@]}"; do
         sleep .5
         ;;
     "Harden Workstation")
-        echo "Calling Script to harden Workstation."
-        ./scripts/hardening/Harden-Workstation.sh
+        echo "Calling Scripts to harden Workstation."
+        ./scripts/hardening/Harden-appinstall.sh
+        ./scripts/hardening/Journal-config.sh
+        ./scritps/hardening/MOTD.sh
+        ./scripts/hardening/Restrict-Sudo.sh
+        ./scripts/hardening/Password_policy.sh
         ./scripts/hardening/Filesystem_config.sh
         ./scripts/hardening/Enable-ASLR.sh
         ./scripts/hardening/Device-Firewall.sh
         ./scripts/hardening/Network_params.sh
         ./scripts/hardening/ssh_params.sh
         ./scripts/hardening/cron.sh
+        ./scripts/hardening/Rsyslog.sh
         ;;
     "Add user to Sudoers")
         echo "calling file to add user to sudoers"
