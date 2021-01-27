@@ -15,7 +15,7 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 echo "######Upgrade VIM and purge non required packages######"
-sudo add-apt-repoistory ppa:jonathonf/vim -y
+sudo add-apt-repository ppa:jonathonf/vim -y
 sudo apt update
 sudo apt install vim -y
 #purge prelink program that modifies ELF shared libraries and ELF dynamically linked binaries in such a way that the time needed for the dynamic linker to perform relocations at startup significantly decreases.
@@ -46,3 +46,20 @@ echo "All connections are monitored and recorded" | sudo tee /etc/issue.net
 echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/issue.net
 echo "All connections are monitored and recorded" | sudo tee /etc/issue
 echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/issue
+
+echo "######Create Sudo Logfile and pty######"
+echo "Defaults logfile="/var/log/sudo.log"">>/etc/sudoers
+echo "Defaults use_pty">>/etc/sudoers
+
+echo "######Install AIDE######"
+apt install aide aide-common -y
+aideinit
+mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+
+echo "######Setting Root password######"
+echo enter root password
+read password
+passwd root << EOD
+${password}
+${password}
+EOD

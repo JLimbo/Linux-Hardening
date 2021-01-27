@@ -80,3 +80,18 @@ cat /etc/passwd | egrep -v '^(root|halt|sync|shutdown)' | awk -F: '($7 != "/usr/
 done
 #
 
+#Grub
+echo "######Securing Grub permissions######"
+chown root:root /boot/grub/grub.cfg
+chmod og-rwx /boot/grub/grub.cfg
+
+echo "######Configuring /tmp######"
+cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/
+systemctl daemon-reload
+systemctl --now enable tmp.mount
+
+echo "######Correcting options on /dev/shm and /tmp######"
+echo "tmpfs /dev/shm tmpfs defaults,nodev,nosuid,noexec 0 0" >> /etc/fstab
+echo "tmpfs /tmp tmpfs rw,noexec,nodev,nosuid,size=2G 0 0" >> /etc/fstab
+mount -o remount,nodev,noexec /dev/shm
+mount -o nodev,noexec /tmp

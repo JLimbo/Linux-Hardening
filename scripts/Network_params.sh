@@ -37,6 +37,10 @@ sysctl -w net.ipv6.conf.default.accept_redirects=0
 sysctl -w net.ipv4.route.flush=1
 sysctl -w net.ipv6.route.flush=1
 
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.route.flush=1
+
 echo "##############  Don't accept secure ICMP redirects ##############"
 
 echo "net.ipv4.conf.all.secure_redirects = 0" >>/etc/sysctl.conf

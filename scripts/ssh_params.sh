@@ -10,6 +10,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 #Variables
 SSH_CONF=/etc/ssh/sshd_config
+sudo apt install openssh-server -y
 #Start
 echo "######Setting permissions on SSHD Config file######"
 chown root:root /etc/ssh/sshd_config

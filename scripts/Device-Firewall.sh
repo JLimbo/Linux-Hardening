@@ -15,12 +15,12 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 echo "######## 1.1 - Configure IP table rules - ########"
-sleep.5
+sleep .5
 
 #Start by IP Tables - Going on the rule no inbound bar SSH and ping
 #disable UFW
 ufw disable
-ehco "######Install ip tables######"
+echo "######Install ip tables######"
 apt install iptables iptables-persistent
 echo "######Flushing current ruleset######"
 iptables -F
@@ -46,7 +46,7 @@ iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
 echo "######Save v4 Firewall rules######"
 iptables-save >/etc/iptables/rules.v4
 echo "######Run the same for IPV6######"
-ehco "######Flush IP6tables rules######"
+echo "######Flush IP6tables rules######"
 ip6tables -F
 echo "######Ensure default deny firewall policy######"
 ip6tables -P INPUT DROP
@@ -59,4 +59,4 @@ ip6tables -A INPUT -s ::1 -j DROP
 #Save
 ip6tables-save >/etc/iptables/rules.v6
 echo "######## 1.1 - Configure IP table rules Complete - ########"
-sleep.5
+sleep .5
