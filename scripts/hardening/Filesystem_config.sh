@@ -98,4 +98,4 @@ mount -o nodev,noexec /tmp
 
 #Log file permissions
 echo "############## 1.3 Fix permissions on logfiles ##############"
-find /var/log -type f -exec chmod g-wx,o-rwx {} +
+find /var/log -type f -exec chmod g-wx,o-rwx "{}" + -o -type d -exec chmod g-w,o-rwx "{}" +
