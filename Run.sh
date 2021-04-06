@@ -28,7 +28,7 @@ select opt in "${options[@]}"; do
         ;;
     "Install apps")
         echo "Calling Script to install applications."
-        # optionally call a function or run some code here
+        ./scripts/functions/Install-apps.sh
         sleep .5
         ;;
     "Harden Workstation")
