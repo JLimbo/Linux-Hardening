@@ -34,7 +34,7 @@ select opt in "${options[@]}"; do
     "Harden Workstation")
         echo "Calling Scripts to harden Workstation."
         ./scripts/hardening/Harden-appinstall.sh
-        ./scripts/hardening/Journal-config.sh
+        ./scripts/hardening/Journal-Config.sh
         ./scripts/hardening/MOTD.sh
         ./scripts/hardening/Restrict-Sudo.sh
         ./scripts/hardening/Password_policy.sh
