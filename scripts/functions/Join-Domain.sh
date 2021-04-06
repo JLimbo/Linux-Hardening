@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#Written by John Limb - 19/7/2019.
-#Aim is to install relivent applications and packages.. And perform configuration. We might never get that far but we will see.
+#Written by John Limb - 19/3/2021
 #setting variables
 lightdm=/usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
 set -eo pipefail
