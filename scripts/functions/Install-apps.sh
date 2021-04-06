@@ -45,8 +45,9 @@ sudo apt install ./google-chrome*.deb
 #fetching zoom
 echo fetching zoom!!
 sleep .5
-sudo wget https://zoom.us/client/latest/zoom_amd64.deb
-sudo dpkg -i ./zoom_amd64.deb
+sudo apt update
+sudo apt install snapd
+sudo snap install zoom-client
 
 #fetching slack
 echo installing ye old slack
