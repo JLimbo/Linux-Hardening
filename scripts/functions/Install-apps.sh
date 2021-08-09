@@ -39,20 +39,21 @@ echo fetching chrome!
 sleep .5
 sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #installing chrome
-echo installing Chrome!
+echo installing Chrome
 sudo apt install ./google-chrome*.deb
 
 #fetching zoom
-echo fetching zoom!!
+echo fetching zoom
 sleep .5
 sudo apt update
 sudo apt install snapd
 sudo snap install zoom-client
 
 #fetching slack
-echo installing ye old slack
+echo installing slack
 sleep .5
 sudo snap install slack --classic
+
 
 #cleanup after
 echo cleaning up!

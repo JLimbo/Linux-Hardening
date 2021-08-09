@@ -45,6 +45,7 @@ select opt in "${options[@]}"; do
         ./scripts/hardening/ssh_params.sh
         ./scripts/hardening/cron.sh
         ./scripts/hardening/Rsyslog.sh
+        ./scripts/hardening/SystemAudit.sh
         ;;
     "Add user to Sudoers")
         echo "calling file to add user to sudoers"
