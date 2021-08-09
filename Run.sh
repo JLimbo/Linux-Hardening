@@ -40,8 +40,8 @@ select opt in "${options[@]}"; do
         ./scripts/hardening/Password_policy.sh
         ./scripts/hardening/Filesystem_config.sh
         ./scripts/hardening/Enable-ASLR.sh
-        #./scripts/hardening/Device-Firewall.sh
-        #./scripts/hardening/Network_params.sh
+        ./scripts/hardening/Device-Firewall.sh
+        ./scripts/hardening/Network_params.sh
         ./scripts/hardening/ssh_params.sh
         ./scripts/hardening/cron.sh
         ./scripts/hardening/Rsyslog.sh
