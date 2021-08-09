@@ -99,7 +99,7 @@ sudo ntpdate $DOMAIN
 
 #Join the domain
 echo joining domain
-sudo realm join -U $username $DOMAIN
+sudo realm join -v -U $username $DOMAIN
 echo sleeping 30seconds
 sleep .30
 
