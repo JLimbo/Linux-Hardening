@@ -5,7 +5,7 @@ red=$(tput setaf 1)
 green=$(tput setaf 2)
 reset=$(tput sgr0)
 #setting variable to auto exit on error
-set -eo pipefail
+#set -eo pipefail
 #Checking if you are root.. if not then you will get error
 echo Checking that you are root...
 #sleeping
