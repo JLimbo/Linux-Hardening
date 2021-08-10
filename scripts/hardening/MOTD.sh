@@ -31,7 +31,7 @@ echo "Disconnect immediately if you are not authorized user" | sudo tee -a /etc/
 
 echo "######Setting Root password######"
 echo enter root password
-read password
+read -s password
 passwd root << EOD
 ${password}
 ${password}

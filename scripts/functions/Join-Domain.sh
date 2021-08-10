@@ -14,7 +14,7 @@ if [[ $(id -u) -ne 0 ]]; then
 fi
 
 #define admin running script
-echo Enter Domain Admin username@domain
+echo Enter Domain Admin username 
 read username
 echo -e hello $username - Welcome to the Linux build script. Please follow any onscreen instructions given.
 sleep .10
