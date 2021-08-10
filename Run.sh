@@ -18,7 +18,7 @@ if [[ $(id -u) -ne 0 ]]; then
 fi
 
 PS3='Choose your option: '
-options=("Join-domain" "Install apps" "Harden Workstation" "Add user to Sudoers" "Quit")
+options=("Join-domain" "Install apps" "Harden Workstation" "Add user to Sudoers" "NSG Prep" "Quit")
 select opt in "${options[@]}"; do
     case $opt in
     "Join-domain")
@@ -50,6 +50,10 @@ select opt in "${options[@]}"; do
     "Add user to Sudoers")
         echo "calling file to add user to sudoers"
         ./scripts/functions/Add-Sudoer.sh
+        ;;
+    "NSG Prep")
+        echo "calling file to prep for nsg client"
+        ./scripts/functions/NSGClient-install.sh
         ;;
     "Quit")
         echo "Exiting, byee!"
