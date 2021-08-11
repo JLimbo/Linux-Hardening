@@ -16,7 +16,7 @@ fi
 #define admin running script
 echo Enter Domain Admin username 
 read username
-echo -e hello $username - Welcome to the Linux build script. Please follow any onscreen instructions given.
+printf  "Please follow any onscreen instructions given\\N".
 sleep .10
 #checking for update
 echo checking updates
@@ -47,7 +47,7 @@ cd ./$dirname
 echo sleeping
 sleep .5
 #Time for apps
-echo Time to install some applications
+printf "    Installing Applications required to join AD domin \\n"
 while read -r p; do sudo apt-get install -y $p; done < <(
     cat <<"EOF"
 unzip
@@ -137,7 +137,7 @@ echo cleaning up!
 sleep 2
 rm -rf /$dirname
 
-echo Complete! please reboot this machine and login as the user.
+printf "    Complete!   \\n"
 echo hit CTRL+C to end
 echo -e "\n"
 sleep 20
