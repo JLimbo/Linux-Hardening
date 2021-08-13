@@ -53,7 +53,7 @@ select opt in "${options[@]}"; do
         ;;
     "NSG Prep")
         echo "calling file to prep for nsg client"
-        ./scripts/functions/NSGClient-install.sh
+        ./scripts/functions/NSGclient-install.sh
         ;;
     "Quit")
         echo "Exiting, byee!"
